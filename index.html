@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MoodMansion — Your serene emotional wellness sanctuary. Explore your feelings with AI-powered listener, analyzer, coach, and calm agents.">
+  <title>MoodMansion — Emotional Wellness Sanctuary</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏡</text></svg>">
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a class="nav-logo" onclick="navigateTo('home')">
+      <div class="nav-logo-icon">🏡</div>
+      <span class="nav-logo-text">MoodMansion</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" onclick="navigateTo('home')" class="active" data-page="home">Home</a></li>
+      <li><a href="#" onclick="navigateTo('listener')" data-page="listener">Listener</a></li>
+      <li><a href="#" onclick="navigateTo('analyzer')" data-page="analyzer">Analyzer</a></li>
+      <li><a href="#" onclick="navigateTo('coach')" data-page="coach">Coach</a></li>
+      <li><a href="#" onclick="navigateTo('calm')" data-page="calm">Calm</a></li>
+    </ul>
+    <button class="nav-cta" onclick="navigateTo('listener')">Start Session ✨</button>
+    <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══ HOME PAGE ═══ -->
+<div class="page active" id="page-home">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge"><span class="dot"></span> Your safe space awaits</div>
+        <h1>Welcome to<br><span class="accent-text">MoodMansion</span></h1>
+        <p class="subtitle">A serene sanctuary where AI-powered companions help you understand, process, and nurture your emotional well-being — one gentle step at a time.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="navigateTo('listener')">Begin Your Journey 🌸</button>
+          <button class="btn-secondary" onclick="scrollToMoodEntry()">Log Your Mood 📝</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div style="text-align: center; position: relative; z-index: 1;">
+            <div style="font-size: 4rem; margin-bottom: 1rem;">🌿</div>
+            <h3 style="margin-bottom: 0.5rem;">How are you feeling?</h3>
+            <p class="subtitle" style="font-size: 0.95rem;">Your emotions are valid. Let's explore them together.</p>
+            <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
+              <span class="mood-btn" onclick="quickMood('Peaceful')" style="padding: 0.8rem 1rem; min-width: auto;"><span class="emoji">😌</span>Peaceful</span>
+              <span class="mood-btn" onclick="quickMood('Anxious')" style="padding: 0.8rem 1rem; min-width: auto;"><span class="emoji">😰</span>Anxious</span>
+              <span class="mood-btn" onclick="quickMood('Happy')" style="padding: 0.8rem 1rem; min-width: auto;"><span class="emoji">😊</span>Happy</span>
+              <span class="mood-btn" onclick="quickMood('Sad')" style="padding: 0.8rem 1rem; min-width: auto;"><span class="emoji">😢</span>Sad</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mood Entry -->
+  <section class="section mood-entry" id="moodEntry">
+    <h2 class="animate-in">How are you feeling <span class="accent-text">right now</span>?</h2>
+    <p class="subtitle animate-in animate-in-delay-1">Select a mood and share what's on your mind. There's no wrong answer here.</p>
+    <div class="mood-grid animate-in animate-in-delay-2">
+      <button class="mood-btn" data-mood="Happy" onclick="selectMood(this)"><span class="emoji">😊</span>Happy</button>
+      <button class="mood-btn" data-mood="Calm" onclick="selectMood(this)"><span class="emoji">😌</span>Calm</button>
+      <button class="mood-btn" data-mood="Grateful" onclick="selectMood(this)"><span class="emoji">🙏</span>Grateful</button>
+      <button class="mood-btn" data-mood="Anxious" onclick="selectMood(this)"><span class="emoji">😰</span>Anxious</button>
+      <button class="mood-btn" data-mood="Sad" onclick="selectMood(this)"><span class="emoji">😢</span>Sad</button>
+      <button class="mood-btn" data-mood="Angry" onclick="selectMood(this)"><span class="emoji">😤</span>Angry</button>
+      <button class="mood-btn" data-mood="Tired" onclick="selectMood(this)"><span class="emoji">😴</span>Tired</button>
+      <button class="mood-btn" data-mood="Hopeful" onclick="selectMood(this)"><span class="emoji">🌟</span>Hopeful</button>
+      <button class="mood-btn" data-mood="Lonely" onclick="selectMood(this)"><span class="emoji">🥺</span>Lonely</button>
+      <button class="mood-btn" data-mood="Excited" onclick="selectMood(this)"><span class="emoji">🤩</span>Excited</button>
+    </div>
+    <textarea class="mood-textarea" id="moodText" placeholder="What's on your mind? Share as much or as little as you'd like..."></textarea>
+    <br><br>
+    <button class="btn-primary" onclick="submitMood()" id="submitMoodBtn">Save & Explore 🌱</button>
+  </section>
+
+  <!-- Features -->
+  <section class="section">
+    <div style="text-align: center; margin-bottom: 1rem;">
+      <h2 class="animate-in">Your Wellness <span class="accent-text">Companions</span></h2>
+      <p class="subtitle animate-in animate-in-delay-1">Four AI-powered agents designed to support every dimension of your emotional journey</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card animate-in animate-in-delay-1" onclick="navigateTo('listener')">
+        <div class="feature-icon">💜</div>
+        <h3>Listener Agent</h3>
+        <p>A compassionate AI that truly hears you. Share your thoughts in a judgment-free space and receive empathic, thoughtful responses.</p>
+      </div>
+      <div class="feature-card animate-in animate-in-delay-2" onclick="navigateTo('analyzer')">
+        <div class="feature-icon">📊</div>
+        <h3>Analyzer Agent</h3>
+        <p>Discover patterns in your emotional landscape. Visual insights help you understand your mood trends and triggers over time.</p>
+      </div>
+      <div class="feature-card animate-in animate-in-delay-3" onclick="navigateTo('coach')">
+        <div class="feature-icon">🌱</div>
+        <h3>Coach Agent</h3>
+        <p>Personalized advice and gentle guidance tailored to your unique emotional needs. Grow with actionable wellness strategies.</p>
+      </div>
+      <div class="feature-card animate-in animate-in-delay-4" onclick="navigateTo('calm')">
+        <div class="feature-icon">🧘</div>
+        <h3>Calm Agent</h3>
+        <p>Guided breathing exercises, ambient sounds, and mindful meditations to restore your inner peace whenever you need it.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ LISTENER PAGE ═══ -->
+<div class="page" id="page-listener">
+  <div class="section">
+    <div class="page-header">
+      <span class="page-header-icon">💜</span>
+      <h2>The <span class="accent-text">Listener</span></h2>
+      <p class="subtitle">Share what's on your heart. I'm here to listen with empathy and understanding.</p>
+    </div>
+    <div class="chat-container" id="chatContainer">
+      <div class="chat-header">
+        <div class="chat-avatar">💜</div>
+        <div class="chat-status">
+          <h4>MoodMansion Listener</h4>
+          <span><span class="online-dot"></span> Always here for you</span>
+        </div>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="message bot">Hello, beautiful soul 🌸 I'm your Listener — a safe space for whatever you're feeling. There's no judgment here, only understanding. What would you like to share today?</div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" class="chat-input" id="chatInput" placeholder="Share what's on your mind..." onkeypress="if(event.key==='Enter')sendMessage()">
+        <button class="chat-send" onclick="sendMessage()">➤</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ANALYZER PAGE ═══ -->
+<div class="page" id="page-analyzer">
+  <div class="section">
+    <div class="page-header">
+      <span class="page-header-icon">📊</span>
+      <h2>Mood <span class="accent-text">Analyzer</span></h2>
+      <p class="subtitle">Discover patterns and insights in your emotional journey over time.</p>
+    </div>
+    <div class="analyzer-grid" id="statsGrid">
+      <div class="stat-card animate-in">
+        <div class="stat-number accent-text" id="totalEntries">0</div>
+        <div class="stat-label">Mood Entries</div>
+      </div>
+      <div class="stat-card animate-in animate-in-delay-1">
+        <div class="stat-number accent-text" id="dominantMood">—</div>
+        <div class="stat-label">Dominant Mood</div>
+      </div>
+      <div class="stat-card animate-in animate-in-delay-2">
+        <div class="stat-number accent-text" id="streakCount">0</div>
+        <div class="stat-label">Day Streak 🔥</div>
+      </div>
+      <div class="stat-card animate-in animate-in-delay-3">
+        <div class="stat-number accent-text" id="wellnessScore">—</div>
+        <div class="stat-label">Wellness Score</div>
+      </div>
+    </div>
+    <div class="chart-container animate-in">
+      <h3 style="margin-bottom: 1.5rem;">Mood Distribution</h3>
+      <div class="mood-chart">
+        <div class="chart-bar-group" id="moodChart"></div>
+      </div>
+    </div>
+    <div class="insights-list" id="insightsList">
+      <h3 style="margin-bottom: 1rem;">💡 Insights</h3>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ COACH PAGE ═══ -->
+<div class="page" id="page-coach">
+  <div class="section">
+    <div class="page-header">
+      <span class="page-header-icon">🌱</span>
+      <h2>Wellness <span class="accent-text">Coach</span></h2>
+      <p class="subtitle">Personalized guidance to help you grow and thrive emotionally.</p>
+    </div>
+    <div class="coach-cards" id="coachCards"></div>
+    <div style="text-align: center; margin-top: 2rem;">
+      <button class="btn-primary" onclick="generateAdvice()">Get Fresh Advice ✨</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CALM PAGE ═══ -->
+<div class="page" id="page-calm">
+  <div class="section">
+    <div class="page-header">
+      <span class="page-header-icon">🧘</span>
+      <h2>Find Your <span class="accent-text">Calm</span></h2>
+      <p class="subtitle">Breathing exercises, ambient sounds, and mindful moments to restore your peace.</p>
+    </div>
+    <div class="breathing-circle-container">
+      <div class="breathing-circle" id="breathCircle" onclick="toggleBreathing()">
+        <span class="breathing-text" id="breathText">Tap to Begin</span>
+      </div>
+      <p class="breathing-phase" id="breathPhase">4-7-8 Breathing Technique</p>
+    </div>
+    <h3 style="text-align: center; margin-bottom: 1rem;">🎵 Ambient Sounds</h3>
+    <div class="sound-controls" id="soundControls">
+      <button class="sound-btn" data-sound="rain" onclick="toggleSound(this)">🌧️ Rain</button>
+      <button class="sound-btn" data-sound="ocean" onclick="toggleSound(this)">🌊 Ocean</button>
+      <button class="sound-btn" data-sound="forest" onclick="toggleSound(this)">🌲 Forest</button>
+      <button class="sound-btn" data-sound="fire" onclick="toggleSound(this)">🔥 Fireplace</button>
+      <button class="sound-btn" data-sound="wind" onclick="toggleSound(this)">💨 Wind</button>
+    </div>
+    <div class="calm-exercises">
+      <div class="calm-card" onclick="startExercise('grounding')">
+        <div class="calm-icon">🌍</div>
+        <h3>5-4-3-2-1 Grounding</h3>
+        <p>A sensory awareness technique to bring you back to the present moment</p>
+      </div>
+      <div class="calm-card" onclick="startExercise('bodyscan')">
+        <div class="calm-icon">✨</div>
+        <h3>Body Scan</h3>
+        <p>Gently scan from head to toe, releasing tension along the way</p>
+      </div>
+      <div class="calm-card" onclick="startExercise('gratitude')">
+        <div class="calm-icon">🙏</div>
+        <h3>Gratitude Moment</h3>
+        <p>Pause and reflect on three things you're thankful for right now</p>
+      </div>
+      <div class="calm-card" onclick="startExercise('visualization')">
+        <div class="calm-icon">🌈</div>
+        <h3>Safe Place Visualization</h3>
+        <p>Journey to your calm, safe inner sanctuary through guided imagery</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-links">
+    <a href="#" onclick="navigateTo('home')">Home</a>
+    <a href="#" onclick="navigateTo('listener')">Listener</a>
+    <a href="#" onclick="navigateTo('analyzer')">Analyzer</a>
+    <a href="#" onclick="navigateTo('coach')">Coach</a>
+    <a href="#" onclick="navigateTo('calm')">Calm</a>
+  </div>
+  <p>🏡 MoodMansion — Your emotional wellness sanctuary. Made with 💜</p>
+</footer>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- Scripts -->
+<script src="js/app.js"></script>
+<script src="js/listener.js"></script>
+<script src="js/analyzer.js"></script>
+<script src="js/coach.js"></script>
+<script src="js/calm.js"></script>
+</body>
+</html>
